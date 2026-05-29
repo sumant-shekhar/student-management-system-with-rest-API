@@ -4,16 +4,14 @@ from .models import Student
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
     list_display = (
-        'admission_number',
         'first_name',
         'last_name',
-        'student_class',
         'date_of_birth',
+        'student_class',
         'email',
         )
 
     search_fields = (
-        'admission_number',
         'first_name',
         'last_name',
         'email',
