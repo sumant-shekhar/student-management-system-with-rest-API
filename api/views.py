@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.shortcuts import render
 from .models import Student
 
 def create_student(request):
+    success_message = None
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
@@ -19,6 +19,7 @@ def create_student(request):
             father_name=father_name,
             email=email
         )
-        return HttpResponse(f"Student created successfully with ID: {student.pk}")
+        success_message = f"Student created successfully with ID: {student.pk}"
+        return render(request, 'student.html', {'message': success_message}) 
     
     return render(request, 'index.html')
