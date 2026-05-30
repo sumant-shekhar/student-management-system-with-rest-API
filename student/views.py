@@ -13,10 +13,10 @@ def create_student(request):
         student = Student.objects.create(
             student_name=student_name,
             date_of_birth=date_of_birth,
-            student_class=student_class,
+            student_class=int(student_class),
             student_email=student_email,
         )
         success_message = f"Student created successfully with ID: {student.pk}"
-        return HttpResponse(request, {'message': success_message}) 
+        return render(request, 'create_student.html', {'message': success_message}) 
     
     return render(request, 'create_student.html')

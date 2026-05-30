@@ -5,8 +5,8 @@ from student.models import Student
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
     list_display = (
-        "first_name",
-        "last_name",
+        "student_name",
+        "date_of_birth",
         "student_class",
-        "email",
+        "student_email",
     )
