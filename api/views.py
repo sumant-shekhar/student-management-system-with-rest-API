@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .models import Student
 
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
 def create_student(request):
     success_message = None
     if request.method == 'POST':
@@ -23,3 +26,12 @@ def create_student(request):
         return render(request, 'student.html', {'message': success_message}) 
     
     return render(request, 'index.html')
+
+def View_student(request):
+    return render(request, 'student.html')
+
+def Update_student(request):
+    return render(request, 'student.html')
+
+def Delete_student(request):
+    return render(request, 'student.html')
