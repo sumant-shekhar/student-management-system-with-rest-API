@@ -25,13 +25,13 @@ def create_student(request):
         success_message = f"Student created successfully with ID: {student.pk}"
         return render(request, 'student.html', {'message': success_message}) 
     
-    return render(request, 'index.html')
+    return render(request, 'create_student.html')
 
 def View_student(request):
-    return render(request, 'student.html')
+    return render(request, 'View_student.html')
 
 def Update_student(request):
-    return render(request, 'student.html')
+    return render(request, 'Update_student.html')
 
 def Delete_student(request):
-    return render(request, 'student.html')
+    return render(request, 'Delete_student.html')
