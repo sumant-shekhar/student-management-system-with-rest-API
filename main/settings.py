@@ -21,6 +21,8 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'api',
+    'student',
+    'teacher',
 ]
 
 MIDDLEWARE = [
