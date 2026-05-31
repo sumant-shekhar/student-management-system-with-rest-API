@@ -7,6 +7,6 @@ class StudentAdmin(admin.ModelAdmin):
     list_display = (
         "student_name",
         "date_of_birth",
-        "student_class",
+        "classroom",
         "student_email",
     )

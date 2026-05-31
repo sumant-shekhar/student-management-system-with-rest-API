@@ -1,5 +1,5 @@
 from django.db import models
-
+from api.models import ClassRoom
 
 CLASS_CHOICES = (
     (1, "Class 1"),
@@ -18,8 +18,13 @@ CLASS_CHOICES = (
 class Student(models.Model):
     student_name = models.CharField(max_length=100)
     date_of_birth = models.DateField()
-    student_class = models.IntegerField(choices=CLASS_CHOICES)
     student_email = models.EmailField(unique=True)
+
+    classroom = models.ForeignKey(
+        ClassRoom,
+        on_delete=models.CASCADE,
+        related_name="students"
+    )
 
     def __str__(self):
         return self.student_name

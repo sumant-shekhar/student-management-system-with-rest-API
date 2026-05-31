@@ -6,6 +6,6 @@ from teacher.models import Teacher
 class TeacherAdmin(admin.ModelAdmin):
     list_display = (
         "teacher_name",
-        "teacher_class",
+        "classroom",
         "teacher_email",
     )

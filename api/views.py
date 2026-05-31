@@ -1,27 +1,43 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import generics
 from student.models import Student
 from teacher.models import Teacher
-from .serializer import StudentSerializer,TeacherSerializer
+from api.serializer import StudentSerializer, TeacherSerializer
 from rest_framework import generics
+from student.models import Student
+from teacher.models import Teacher
+from api.serializer import StudentSerializer, TeacherSerializer
+from api.pagination import CustomPagination
+from api.models import ClassRoom
+from api.serializer import ClassRoomSerializer
 
 
-class StudentListCreateAPIView(generics.ListCreateAPIView):
+class StudentListCreateView(generics.ListCreateAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    filterset_fields = ['classroom']
+    pagination_class = CustomPagination
+
+class StudentDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
 
-class StudentRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer
+class TeacherListCreateView(generics.ListCreateAPIView):
+    queryset = Teacher.objects.all()
+    serializer_class = TeacherSerializer
+    filterset_fields = ["classroom"]
+    pagination_class = CustomPagination
 
 
-class TeacherListCreateAPIView(generics.ListCreateAPIView):
+class TeacherDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
 
+class ClassRoomListCreateView(generics.ListCreateAPIView):
+    queryset = ClassRoom.objects.all()
+    serializer_class = ClassRoomSerializer
 
-class TeacherRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer
+
+class ClassRoomDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = ClassRoom.objects.all()
+    serializer_class = ClassRoomSerializer
