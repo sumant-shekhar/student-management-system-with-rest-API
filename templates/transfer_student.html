@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transfer Student</title>
+</head>
+<body>
+    <div style="text-align:center; margin-top:50px;">
+        <h1>Transfer Student to New Class</h1>
+        
+        {% if message %}
+            <p style="color: green;">{{ message }}</p>
+        {% endif %}
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Select Student:</label><br>
+            <select name="student_id" required>
+                <option value="">-- Choose Student --</option>
+                {% for student in students %}
+                    <option value="{{ student.id }}">{{ student.student_name }} (Currently in {{ student.classroom }})</option>
+                {% endfor %}
+            </select>
+            <br><br>
+
+            <label>Select New Class:</label><br>
+            <select name="new_class_no" required>
+                <option value="">-- Choose Class --</option>
+                {% for classroom in classrooms %}
+                    <option value="{{ classroom.class_no }}">{{ classroom }}</option>
+                {% endfor %}
+            </select>
+            <br><br>
+
+            <button type="submit">Transfer Student</button>
+        </form>
+        <br>
+        <a href="/student/">Back to Registration</a>
+    </div>
+</body>
+</html>

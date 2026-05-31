@@ -4,12 +4,21 @@ from teacher.models import Teacher
 from api.models import ClassRoom
 
 class StudentSerializer(serializers.ModelSerializer):
+    classroom_name = serializers.StringRelatedField(source="classroom", read_only=True)
+
     class Meta:
         model = Student
-        fields = '__all__'
+        fields = [
+            "id",
+            "student_name",
+            "date_of_birth",
+            "student_email",
+            "classroom",
+            "classroom_name",
+        ]
 
 class TeacherSerializer(serializers.ModelSerializer):
-    classroom_name = serializers.StringRelatedField(source="classroom")
+    classroom_name = serializers.StringRelatedField(source="classroom", read_only=True)
 
     class Meta:
         model = Teacher

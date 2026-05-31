@@ -6,6 +6,14 @@
 <body>
     <div style="text-align:center; margin-top:100px;">
     <h2>Create Teacher</h2>
+
+    {% if message %}
+        <p style="color: green;">{{ message }}</p>
+    {% endif %}
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
     <form method="POST">
         {% csrf_token %}
 
@@ -13,26 +21,19 @@
         <input type="text" id="teacher_name" name="teacher_name" required>
         <br><br>
 
-        <label for="teacher_class">Teacher Class:</label><br>
-        <select id="teacher_class" name="teacher_class" required>
-            <option value="">Select Class</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-        </select>
-        <br><br>
 
         <label for="teacher_email">Teacher Email:</label><br>
         <input type="email" id="teacher_email" name="teacher_email" required>
+        <br><br>
+
+        
+        <label for="teacher_class">Teacher Class:</label><br>
+        <select id="teacher_class" name="teacher_class" required>
+            <option value="">Select Class</option>
+            {% for classroom in classrooms %}
+                <option value="{{ classroom.class_no }}">{{ classroom }}</option>
+            {% endfor %}
+        </select>
         <br><br>
 
         <button type="submit">Create Teacher </button>

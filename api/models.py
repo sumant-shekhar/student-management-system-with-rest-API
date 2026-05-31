@@ -1,7 +1,5 @@
 from django.db import models
 
-from django.db import models
-
 CLASS_CHOICES = (
     (1, "Class 1"),
     (2, "Class 2"),
